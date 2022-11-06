@@ -36,9 +36,9 @@ abstract contract ERC721Tradable is ERC721A, ContextMixin, NativeMetaTransaction
      * Override isApprovedForAll to whitelist user's OpenSea proxy accounts to enable gas-less listings.
      */
     function isApprovedForAll(address owner, address operator)
-    override
     public
     view
+    override
     returns (bool)
     {
         // Whitelist OpenSea proxy contract for easy trading.
@@ -53,10 +53,10 @@ abstract contract ERC721Tradable is ERC721A, ContextMixin, NativeMetaTransaction
     /**
      * This is used instead of msg.sender as transactions won't be sent by the original token owner, but by OpenSea.
      */
-    function _msgSender()
+    function _msgSenderERC721A()
     internal
-    override
     view
+    override
     returns (address sender)
     {
         return ContextMixin.msgSender();
